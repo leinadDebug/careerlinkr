@@ -1,8 +1,9 @@
 import { Job } from "@prisma/client";
-import CompanyLogoPlacholder from "../../public/web-development-macbook-pro-mockup-mockup-d3d1beb04e77e50573ee78334345462a.png";
+import CompanyLogoPlacholder from "../../../public/web-development-macbook-pro-mockup-mockup-d3d1beb04e77e50573ee78334345462a.png";
 import Image from "next/image";
 import { Banknote, Briefcase, Clock, Globe2, MapPin } from "lucide-react";
 import { toDollar, relDate } from "@/lib/utils";
+import Badge from "./badge";
 
 interface JoblistingProps {
   job: Job;
@@ -58,7 +59,11 @@ export default function Joblisting({
         </div>
       </div>
       <div className="hidden shrink-0 flex-col items-end justify-between sm:flex">
-        {type}
+        <Badge>{type}</Badge>
+        <span className="flex items-center gap-1.5 text-sm text-muted-foreground">
+          <Clock size={20} />
+          {relDate(createdAt)}
+        </span>
       </div>
     </article>
   );

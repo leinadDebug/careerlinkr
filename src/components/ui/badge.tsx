@@ -3,7 +3,9 @@ interface BadgeProps {
 }
 
 export default function Badge({ children }: BadgeProps) {
-  <div className="px-2 text-sm  border-2 bg-muted text-muted-foreground ">
-    {children}
-  </div>;
+  return (
+    <span className="border bg-muted px-2 py-0.5 text-sm text-muted-foreground ">
+      {children}
+    </span>
+  );
 }
