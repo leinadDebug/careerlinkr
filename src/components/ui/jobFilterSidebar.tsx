@@ -4,10 +4,26 @@ import { Label } from "./label";
 import Select from "./select";
 import { jobTypes } from "@/lib/job-types";
 import { Button } from "./button";
+import { jobFilterSchema } from "@/lib/validation";
+import { redirect } from "next/navigation";
 
 async function filterJobs(formData: FormData) {
   "use server";
+  //the filter server action
+  console.log(formData.get("search") as string);
+  //saves the form data in the form of object
+  const values = Object.fromEntries(formData.entries());
 
+  const { search, type, location, remote } = jobFilterSchema.parse(values);
+
+  const searchParams = new URLSearchParams({
+    ...(search && { search: search.trim() }),
+    ...(type && { type: type }),
+    ...(location && { location }),
+    ...(remote && { remote: "true" }),
+  });
+
+  redirect(`/?${searchParams.toString()}`);
 }
 
 export default async function JobFilterSidebar() {
@@ -18,7 +34,7 @@ export default async function JobFilterSidebar() {
       distinct: ["location"],
     })
     .then((locations) =>
-      locations.map((loc) => loc.location).filter(Boolean),
+      locations.map(({ location }) => location).filter(Boolean),
     )) as string[];
 
   return (
@@ -30,7 +46,6 @@ export default async function JobFilterSidebar() {
             <Input
               name="search"
               id="search"
-              type="text"
               placeholder="title, company, etc."
             />
           </div>
@@ -51,9 +66,9 @@ export default async function JobFilterSidebar() {
             <Label htmlFor="location">Location</Label>
             <Select id="location" name="location">
               <option value="">All location</option>
-              {allLocations.map((loc) => (
-                <option key={loc} value={loc}>
-                  {loc}
+              {allLocations.map((location) => (
+                <option key={location} value={location}>
+                  {location}
                 </option>
               ))}
             </Select>
