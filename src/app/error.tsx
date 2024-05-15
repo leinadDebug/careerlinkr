@@ -1,7 +1,7 @@
 "use client";
 
 import H1 from "@/components/ui/h1";
-import Img from "../../public/inactiveBalloonMonsterFront.4eca22acdc791643a1c1.webp";
+import Img from "../assets/inactiveBalloonMonsterFront.4eca22acdc791643a1c1.webp";
 import Image from "next/image";
 
 export default function Error() {
@@ -14,7 +14,7 @@ export default function Error() {
       <Image
         alt="error"
         src={Img}
-        className="rounded-full  bg-[#fffdfdbc] p-3"
+        className="rounded  bg-[#fffdfdbc] p-3"
       ></Image>
     </main>
   );

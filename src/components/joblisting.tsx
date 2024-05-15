@@ -1,5 +1,5 @@
 import { Job } from "@prisma/client";
-import CompanyLogoPlacholder from "../../../public/web-development-macbook-pro-mockup-mockup-d3d1beb04e77e50573ee78334345462a.png";
+import CompanyLogoPlacholder from "../assets/web-development-macbook-pro-mockup-mockup-d3d1beb04e77e50573ee78334345462a.png";
 import Image from "next/image";
 import { Banknote, Briefcase, Clock, Globe2, MapPin } from "lucide-react";
 import { toDollar, relDate } from "@/lib/utils";
